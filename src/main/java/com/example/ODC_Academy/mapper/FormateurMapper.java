@@ -1,7 +1,7 @@
 package com.example.ODC_Academy.mapper;
 
-import com.example.ODC_Academy.dto.FormateurRequestDto;
-import com.example.ODC_Academy.dto.FormateurResponseDto;
+import com.example.ODC_Academy.dto.FormateurRequestDTO;
+import com.example.ODC_Academy.dto.FormateurResponseDTO;
 import com.example.ODC_Academy.model.Formateur;
 
 /**
@@ -13,8 +13,8 @@ public final class FormateurMapper {
     private FormateurMapper() {
     }
 
-    public static FormateurResponseDto toResponseDto(Formateur formateur) {
-        return new FormateurResponseDto(
+    public static FormateurResponseDTO toResponseDto(Formateur formateur) {
+        return new FormateurResponseDTO(
                 formateur.getId(),
                 formateur.getFirstName(),
                 formateur.getLastName(),
@@ -22,7 +22,7 @@ public final class FormateurMapper {
         );
     }
 
-    public static Formateur toEntity(FormateurRequestDto dto) {
+    public static Formateur toEntity(FormateurRequestDTO dto) {
         Formateur formateur = new Formateur();
         formateur.setFirstName(dto.getFirstName());
         formateur.setLastName(dto.getLastName());

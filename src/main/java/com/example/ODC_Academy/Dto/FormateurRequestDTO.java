@@ -4,12 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-/**
- * Corps de requête pour la création (POST) d'un participant.
- * Le mot de passe transite ici en clair (via HTTPS en prod) et est haché
- * dans ParticipantService avant d'être persisté.
- */
-public class ParticipantRequestDTO {
+public class FormateurRequestDTO {
 
     @NotBlank(message = "Le prénom est obligatoire")
     private String firstName;

@@ -1,7 +1,7 @@
 package com.example.ODC_Academy.mapper;
 
-import com.example.ODC_Academy.dto.ParticipantRequestDto;
-import com.example.ODC_Academy.dto.ParticipantResponseDto;
+import com.example.ODC_Academy.dto.ParticipantRequestDTO;
+import com.example.ODC_Academy.dto.ParticipantResponseDTO;
 import com.example.ODC_Academy.model.Participant;
 
 /**
@@ -13,7 +13,7 @@ public final class ParticipantMapper {
     private ParticipantMapper() {
     }
 
-    public static ParticipantResponseDto toResponseDto(Participant participant) {
+    public static ParticipantResponseDTO toResponseDto(Participant participant) {
         return new ParticipantResponseDTO(
                 participant.getId(),
                 participant.getFirstName(),
@@ -22,7 +22,7 @@ public final class ParticipantMapper {
         );
     }
 
-    public static Participant toEntity(ParticipantRequestDto dto) {
+    public static Participant toEntity(ParticipantRequestDTO dto) {
         Participant participant = new Participant();
         participant.setFirstName(dto.getFirstName());
         participant.setLastName(dto.getLastName());

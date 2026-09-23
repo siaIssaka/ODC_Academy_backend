@@ -1,12 +1,12 @@
-package com.example.ODC_Academy.Service;
+package com.example.ODC_Academy.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import com.example.ODC_Academy.model.Participant;
-import com.example.ODC_Academy.ParticipantRepository;
+import com.example.ODC_Academy.repository.ParticipantRepository;
 
-@Service 
+@Service
 public class ParticipantService {
 
     private final ParticipantRepository participantRepository;

@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.ODC_Academy.Dto.EmployeeDto;
-import com.example.ODC_Academy.mapper.EmployeeMapper;
+import com.example.ODC_Academy.dto.ParticipantRequestDTO;
+import com.example.ODC_Academy.dto.ParticipantResponseDTO;
+import com.example.ODC_Academy.mapper.ParticipantMapper;
 import com.example.ODC_Academy.model.Participant;
 import com.example.ODC_Academy.service.ParticipantService;
 
@@ -38,10 +39,10 @@ public class ParticipantController {
      * @return Le DTO du participant sauvegardé avec un statut HTTP 201 Created
      */
     @PostMapping
-    public ResponseEntity<EmployeeDto> createParticipant(@Valid @RequestBody EmployeeDto dto) {
-        Participant participantToSave = Employeemapper.toEntity(Dto);
+    public ResponseEntity<ParticipantResponseDTO> createParticipant(@Valid @RequestBody ParticipantRequestDTO dto) {
+        Participant participantToSave = ParticipantMapper.toEntity(dto);
         Participant savedParticipant = participantService.saveParticipant(participantToSave);
-        EmployeeDto responseDto = Employeemapper.toDTO(savedParticipant);
+        ParticipantResponseDTO responseDto = ParticipantMapper.toResponseDto(savedParticipant);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }
 
@@ -50,10 +51,10 @@ public class ParticipantController {
      * @return La liste des DTOs de participants
      */
     @GetMapping
-    public ResponseEntity<List<EmployeeDto>> getAllParticipants() {
-        List<EmployeeDto> participants = participantService.getParticipants()
+    public ResponseEntity<List<ParticipantResponseDTO>> getAllParticipants() {
+        List<ParticipantResponseDTO> participants = participantService.getParticipants()
                 .stream()
-                .map(EmployeeMapper::toDTO)
+                .map(ParticipantMapper::toResponseDto)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(participants);
     }
@@ -64,9 +65,9 @@ public class ParticipantController {
      * @return Le DTO du participant trouvé
      */
     @GetMapping("/{id}")
-    public ResponseEntity<EmployeeDto> getParticipantById(@PathVariable("id") Long id) {
+    public ResponseEntity<ParticipantResponseDTO> getParticipantById(@PathVariable("id") Long id) {
         Participant participant = participantService.getParticipant(id);
-        return ResponseEntity.ok(EmployeeMapper.toDTO(participant));
+        return ResponseEntity.ok(ParticipantMapper.toResponseDto(participant));
     }
 
     /**
@@ -76,12 +77,12 @@ public class ParticipantController {
      * @return Le DTO mis à jour
      */
     @PutMapping("/{id}")
-    public ResponseEntity<EmployeeDto> updateParticipant(
+    public ResponseEntity<ParticipantResponseDTO> updateParticipant(
             @PathVariable("id") Long id,
-            @Valid @RequestBody EmployeeDto dto) {
-        Participant participantToUpdate = EmployeeMapper.toEntity(dto);
+            @Valid @RequestBody ParticipantRequestDTO dto) {
+        Participant participantToUpdate = ParticipantMapper.toEntity(dto);
         Participant updatedParticipant = participantService.updateParticipant(id, participantToUpdate);
-        return ResponseEntity.ok(EmployeeMapper.toDTO(updatedParticipant));
+        return ResponseEntity.ok(ParticipantMapper.toResponseDto(updatedParticipant));
     }
 
     /**

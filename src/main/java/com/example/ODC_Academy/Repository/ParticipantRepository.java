@@ -1,4 +1,4 @@
-package com.example.ODC_Academy.Repository;
+package com.example.ODC_Academy.repository;
 
 import java.util.List;
 import java.util.Optional;
